@@ -70,6 +70,36 @@ fixed_time_intervals = function(n_sets,
 }
 
 
+# given average paces and duration for a series of intervals, calculate average pace
+# courtesy of ChatGPT, which wrote incorrect comments and needed some human intervention...
+
+calculate_average_pace <- function(paces, durations) {
+  # Convert pace and duration strings to seconds
+  # MM: pace_seconds is seconds/mile
+  pace_seconds <- sapply(strsplit(paces, ":"), function(x) as.numeric(x[1]) * 60 + as.numeric(x[2]))
+  duration_seconds <- sapply(strsplit(durations, ":"), function(x) as.numeric(x[1]) * 60 + as.numeric(x[2]))
+  
+  # this comment is totally wrong yet the fn works??
+  # Calculate total distance in meters (assuming you're running at a constant pace)
+  distance <- sum(pace_seconds * duration_seconds)
+  
+  # Calculate total duration in seconds
+  total_time <- sum(duration_seconds)
+  
+  # Calculate average pace in seconds per meter
+  average_pace <- distance / total_time
+  
+  # Convert average pace back to mm:ss format
+  average_pace_minutes <- floor(average_pace / 60)
+  average_pace_seconds <- round(average_pace - (average_pace_minutes * 60))
+  average_pace_string <- sprintf("%02d:%02d", average_pace_minutes, average_pace_seconds)
+  
+  # Return the average pace
+  return(average_pace_string)
+}
+
+
+
 # BASIC UTILITY FNS ---------------------------------------------
 # convert sec to string "mm:ss"  
 sec_to_mm_ss = function(t){

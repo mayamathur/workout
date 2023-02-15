@@ -31,3 +31,11 @@ fixed_time_intervals(10,
 fixed_time_intervals(8,
                      leave_every_mm_ss = "02:15",
                      target_work_times = rep( c("1:48", "1:47", "1:46", "1:55"), 2 ) )
+
+
+# calculate average pace across intervals of different durations, 
+#  given average paces within each interval
+paces <- c("06:01", "05:45", "06:30")
+durations <- c("01:30", "02:00", "01:45")
+calculate_average_pace(paces, durations)
+# seems to work even though I don't understand the internal logic of GPT's function
