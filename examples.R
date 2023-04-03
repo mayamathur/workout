@@ -1,6 +1,6 @@
 
 library(here)
-setwd(here)
+setwd(here())
 source("helper_workout.R")
 
 
@@ -39,3 +39,17 @@ paces <- c("06:01", "05:45", "06:30")
 durations <- c("01:30", "02:00", "01:45")
 calculate_average_pace(paces, durations)
 # seems to work even though I don't understand the internal logic of GPT's function
+
+
+# example
+paces <- c("06:49", "06:50", "06:31", "06:41")
+durations <- paces
+calculate_average_pace(paces, durations)
+
+
+# ADD DURATIONS ---------------------------------------
+
+
+# add durations given as quoted "mm:ss" strings
+add_durations( c("01:58", "02:02", "03:20") )
+

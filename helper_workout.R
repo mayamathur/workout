@@ -101,6 +101,7 @@ calculate_average_pace <- function(paces, durations) {
 
 
 # BASIC UTILITY FNS ---------------------------------------------
+
 # convert sec to string "mm:ss"  
 sec_to_mm_ss = function(t){
   paste(paste(formatC(t %/% 60 %% 60, width = 2, format = "d", flag = "0"),
@@ -111,4 +112,23 @@ sec_to_mm_ss = function(t){
 }
 # example
 # sec_to_mm_ss(1305)
+
+# add durations given as mm:ss
+add_durations <- function(durations) {
+  total_seconds <- sum(sapply(durations, function(x) {
+    split_time <- strsplit(x, ":")
+    as.numeric(split_time[[1]][1]) * 60 + as.numeric(split_time[[1]][2])
+  }))
+  
+  total_minutes <- floor(total_seconds / 60)
+  total_seconds_remaining <- total_seconds %% 60
+  
+  sprintf("%02d:%02d", total_minutes, total_seconds_remaining)
+}
+
+# example
+# add_durations( c("01:58", "02:02", "03:20") )
+
+
+
 
