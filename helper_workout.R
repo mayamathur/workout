@@ -81,13 +81,13 @@ calculate_average_pace <- function(paces, durations) {
   
   # this comment is totally wrong yet the fn works??
   # Calculate total distance in meters (assuming you're running at a constant pace)
-  distance <- sum(pace_seconds * duration_seconds)
+  distance <- sum(duration_seconds / pace_seconds)
   
   # Calculate total duration in seconds
   total_time <- sum(duration_seconds)
   
   # Calculate average pace in seconds per meter
-  average_pace <- distance / total_time
+  average_pace <- total_time / distance
   
   # Convert average pace back to mm:ss format
   average_pace_minutes <- floor(average_pace / 60)
